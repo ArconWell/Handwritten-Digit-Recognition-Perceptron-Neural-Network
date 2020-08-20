@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30320.27
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Handwritten Digit Recognition Neural Network", "Handwritten Digit Recognition Neural Network\Handwritten Digit Recognition Neural Network.csproj", "{FBDE2370-1D8A-475F-8B3E-FA889381EC7A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Frontend", "Handwritten Digit Recognition Neural Network\Frontend.csproj", "{FBDE2370-1D8A-475F-8B3E-FA889381EC7A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Backend", "Backend\Backend.csproj", "{0FBC58E9-DC8C-46C7-8B28-D130AECDDD2D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{FBDE2370-1D8A-475F-8B3E-FA889381EC7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FBDE2370-1D8A-475F-8B3E-FA889381EC7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FBDE2370-1D8A-475F-8B3E-FA889381EC7A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0FBC58E9-DC8C-46C7-8B28-D130AECDDD2D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0FBC58E9-DC8C-46C7-8B28-D130AECDDD2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0FBC58E9-DC8C-46C7-8B28-D130AECDDD2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0FBC58E9-DC8C-46C7-8B28-D130AECDDD2D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

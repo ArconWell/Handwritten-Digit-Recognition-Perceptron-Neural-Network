@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Drawing;
 using System.Windows.Forms;
+using Backend;
 
 namespace Handwritten_Digit_Recognition_Neural_Network
 {
@@ -15,6 +9,13 @@ namespace Handwritten_Digit_Recognition_Neural_Network
         public Form1()
         {
             InitializeComponent();
+        }
+
+        private void button1_Click(object sender, System.EventArgs e)
+        {
+            Bitmap bmp = new Bitmap(@"F:\Рабочий стол\Новый точечный рисунок.bmp");
+            pictureBox1.Image = bmp;
+            NeuralNetwork.RecognizeDigit(bmp);
         }
     }
 }
