@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Runtime.InteropServices;
@@ -13,20 +14,19 @@ namespace Backend
             int hiddenLayersCount = 2;
             int hiddenLayerNeuronsCount = 16;
             int outputLayerNeuronsCount = 10;
-            int[] weightsCount;
             int hiddenLayersBiasesCount = hiddenLayerNeuronsCount;
             int outputLayerBiasesCount = outputLayerNeuronsCount;
 
             float[] inputLayer = InitializeInputLayer(bmp);
 
-            SetEveryLayerWeightsCount(inputLayer.Length, hiddenLayersCount, hiddenLayerNeuronsCount, outputLayerNeuronsCount,
-                out weightsCount);
+            float[][,] weights = InitializeLayersWeightsByRandomValue(inputLayer.Length, hiddenLayerNeuronsCount, hiddenLayersCount,
+                outputLayerNeuronsCount);
 
             float[,] hiddenLayers = new float[hiddenLayersCount, hiddenLayerNeuronsCount];
 
             return result;
         }
-      
+
         //This is much faster than Bitmap's method GetPixel()
         private static byte[] GetBitmapRGBByteArray(Bitmap bmp)
         {
@@ -67,21 +67,38 @@ namespace Backend
             return inputLayer;
         }
 
-        private static void SetEveryLayerWeightsCount(int inputLayerNeuronsCount, int hiddenLayersCount,
-           int hiddenLayerNeuronsCount, int outputLayerNeuronsCount, out int[] weightsCount)
-        {
-            weightsCount = new int[hiddenLayersCount + 1];
-            weightsCount[0] = inputLayerNeuronsCount * hiddenLayerNeuronsCount;//between input and first hidden layers
-            for (int i = 1; i < hiddenLayersCount; i++)
-            {
-                weightsCount[i] = hiddenLayerNeuronsCount * hiddenLayerNeuronsCount;
-            }
-            weightsCount[hiddenLayersCount] = hiddenLayerNeuronsCount * outputLayerNeuronsCount;//between last hidden and output layers
-        }
-
         private static float Sigmoid(float x)
         {
             return (float)(1 / (1 + Math.Exp(-x)));
+        }
+
+        private static float[][,] InitializeLayersWeightsByRandomValue(int inputLayerNeuronsCount, int hiddenLayerNeuronsCount, int hiddenLayersCount, 
+            int outputLayerNeuronsCount)
+        {
+            Random rnd = new Random();
+
+            //Local function
+            float[,] InitializeLayerWeightsByRandomValues(int firstLayerNeuronsCount, int secondLayerNeuronsCount)
+            {
+                float[,] layerWeights = new float[secondLayerNeuronsCount, firstLayerNeuronsCount];
+                for (int i = 0; i < secondLayerNeuronsCount; i++)
+                {
+                    for (int j = 0; j < firstLayerNeuronsCount; j++)
+                    {
+                        layerWeights[i, j] = (float)rnd.Next(-100, 101) / 100;
+                    }
+                }
+                return layerWeights;
+            }
+
+            float[][,] weights = new float[hiddenLayersCount+1][,];
+            weights[0] = InitializeLayerWeightsByRandomValues(inputLayerNeuronsCount, hiddenLayerNeuronsCount);
+            for (int i = 1; i < hiddenLayersCount; i++)
+            {
+                weights[i] = InitializeLayerWeightsByRandomValues(hiddenLayerNeuronsCount, hiddenLayerNeuronsCount);
+            }
+            weights[hiddenLayersCount] = InitializeLayerWeightsByRandomValues(hiddenLayerNeuronsCount, outputLayerNeuronsCount);
+            return weights;
         }
     }
 }
