@@ -1,2 +1,2 @@
-# Handwritten-Digit-Recognition-Neural-Network
-Neural Network that can recognize handwritten digits on 28x28 pixels image 
+# Handwritten-Digit-Recognition-Perceptron-Neural-Network
+Perceptron Neural Network that can recognize handwritten digits on 28x28 pixels image 
